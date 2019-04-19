@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="andbook.example.smishing_release">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- VIBREATE로 알람 진동 추가 -->
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/main"
+        android:label="Smishing Detection"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <!-- 아이콘 변경 Main Icon -->
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+
+        <receiver
+            android:name=".SmsReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="9999">
+            <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+                        <!-- 브로드 캐스트 리시버-->
+        <service
+            android:name=".Background"
+            android:enabled="true"
+            android:exported="true">
+        </service> <!-- 백그라운드 -->
+    </application>
+
+</manifest>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainactivity"
+    tools:context=".MainActivity">
+    <!-- 백그라운드 메인 이미지 지정-->
+
+    <Button
+        android:id="@+id/Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="58dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/colorAccent"
+        android:text="시작" />
+
+    <Button
+        android:id="@+id/infomation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="158dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/colorAccent"
+        android:text="도움말"/>
+    <Button
+        android:id="@+id/End"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="258dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/colorAccent"
+        android:text="나가기" />
+
+
+
+</RelativeLayout>
