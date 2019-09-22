@@ -16,7 +16,7 @@ smishing_app
 <https://developers.google.com/api-client-library/java/apis/safebrowsing/v4>
 
 다음 링크는 안드로이드 개발에 참고할 수 있는 **safebrowsing api** 입니다.  
-<https://developer.android.com/training/safetynet/safebrowsing>
+<https://developer.android.com/training/safetynet/safebrowsing>  
 안드로이드의 부족한 자료는 다음 링크 자료를 참고하시면 도움이 됩니다.  
 <http://androidideas.com/checking-urls-with-the-safe-browsing-api-in-android/>
 
