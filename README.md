@@ -1,18 +1,21 @@
 smishing_app
 =============
 
-# 연구용 및 학생용 프로젝트로 개발한 스미싱 어플리케이션입니다.
+# 연구용 및 학생용 프로젝트로 개발한 스미싱
+# 어플리케이션입니다.
 
 기존의 연구용 탐지방법은 **Google에서 제공하는 SafeBrowsing api**를 사용하여 블랙리스트 기반으로
 탐지의 효율성을 확인 하였습니다.
 그러나 본 프로젝트 소스코드에서는 알려지지 않은(Zero day)악성코드를 염두하여
 화이트리스트 기반으로 코드로 수정하였으며, 연구용 프로젝트이기에 따로 서버를 구축하지 않았습니다.
 
-만약 **Google safeBrowsing api**가 궁금하시다면 
-<https://developers.google.com/safe-browsing/v4/get-started> Google 개발문서를 참고바랍니다.
+만약 **Google safeBrowsing api**가 궁금하시다면
+<https://developers.google.com/safe-browsing/v4/get-started> Google
+개발문서를 참고바랍니다.
 
 아래는 **JAVA용 safebrowsing api** 입니다.
 <https://developers.google.com/api-client-library/java/apis/safebrowsing/v4>
+
 
 아래는 안드로이드 개발에 참고할 수 있는 **safebrowsing api** 입니다.
 <https://developer.android.com/training/safetynet/safebrowsing>
