@@ -9,17 +9,16 @@ smishing_app
 그러나 본 프로젝트 소스코드에서는 알려지지 않은(Zero day)악성코드를 염두하여
 화이트리스트 기반으로 코드로 수정하였으며, 연구용 프로젝트이기에 따로 서버를 구축하지 않았습니다.
 
-만약 **Google safeBrowsing api**가 궁금하시다면
-<https://developers.google.com/safe-browsing/v4/get-started> Google
-개발문서를 참고바랍니다.
+만약 **Google safeBrowsing api**가 궁금하시다면 다음 링크 Google 개발문서를 참고바랍니다.
+<https://developers.google.com/safe-browsing/v4/get-started> 
 
-아래는 **JAVA용 safebrowsing api** 입니다.
+다음의 링크는 **JAVA용 safebrowsing api** 입니다.
 <https://developers.google.com/api-client-library/java/apis/safebrowsing/v4>
 
 
-아래는 안드로이드 개발에 참고할 수 있는 **safebrowsing api** 입니다.
+다음 링크는 안드로이드 개발에 참고할 수 있는 **safebrowsing api** 입니다.
 <https://developer.android.com/training/safetynet/safebrowsing>
-안드로이드의 부족한 자료는 아래의 자료를 참고하시면 도움이 됩니다.
+안드로이드의 부족한 자료는 다음 링크 자료를 참고하시면 도움이 됩니다.
 <http://androidideas.com/checking-urls-with-the-safe-browsing-api-in-android/>
 
 ### 본 프로젝트의 탐지 방법은 다음과 같습니다. 
