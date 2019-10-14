@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,9 +6,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
-import UrlSource.Str_Data;
+import util.STR_DATA;
 
 public class SMSReceiverService extends BroadcastReceiver {
 
@@ -37,8 +36,8 @@ public class SMSReceiverService extends BroadcastReceiver {
                 String str_body = msg[0].getMessageBody();
 
                 //StrData.setStrBody 문자 URL 분석용 [용도 분리]
-                Str_Data.setStrBody(msg[0].getMessageBody().toString());
-                Str_Data.setStrHead(msg[0].getOriginatingAddress().toString());
+                STR_DATA.setStrBody(msg[0].getMessageBody());
+                STR_DATA.setStrHead(msg[0].getOriginatingAddress());
 
                 //문자 내용에 URL이 있는지 확인 후 백그라운드로 작업진행 없다면 else
                 if (str_body.contains("http://") || str_body.contains("https://") || str_body.contains("www.")

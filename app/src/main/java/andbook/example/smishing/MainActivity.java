@@ -20,6 +20,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import util.AlarmChannel;
+
 
 /*
  * Create by 이주완 2019.04.13
@@ -44,6 +46,9 @@ import android.widget.Toast;
  * -------------------------------------------------
  * 2019.09.12
  * 개선: 소스파일 역할에 따른 패키지별로 구분 유지보수 용이 및 메소드이름 첫글자 소문자로 변경
+ * --------------------------------------------------
+ * 개선: android version up 28 , 알람 채널 생성 및 오레오 , 오레오 미만 버전 별로 Notification 구현
+ * UI 위치 수정 , 파일명 refector
  * */
 
 
@@ -63,16 +68,18 @@ public class MainActivity extends AppCompatActivity {
         Button end = (Button) findViewById(R.id.End);
         Button info = (Button) findViewById(R.id.Infomation);
 
+        AlarmChannel.createChannel(getApplicationContext());
+
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_DENIED) {
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_DENIED)
                         Toast.makeText(getApplicationContext(), "권한이 허용되어 탐지중입니다.", Toast.LENGTH_SHORT).show();
-                    }
                     else
                     CheckPermission();
-                } else
+                }
+                else
                     Toast.makeText(getApplicationContext(), "탐지중 (마시멜로우 미만 버전용)", Toast.LENGTH_SHORT).show();
             }
         });
@@ -87,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 new AlertDialog.Builder(MainActivity.this)
                         .setIcon(R.drawable.big)
+                        .setCancelable(false)
                         .setTitle("안전한 모바일 사용을 위하여")
                         .setMessage("Smishing Detection은 사용자에게 도착하는 문자를 읽어들이고 분석합니다. 이후 알림으로 악성유무를 제공합니다.")
                         .setPositiveButton("확인",
@@ -131,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     if (aGrantResult == PackageManager.PERMISSION_DENIED) {
                         //권한이 하나라도 거부 될 시
                         new AlertDialog.Builder(MainActivity.this)
+                                .setCancelable(false)
                                 .setTitle("사용 권한의 문제발생")
                                 .setIcon(R.drawable.big)
                                 .setMessage("탐지를 위해서 권한을 허용해주세요.")
@@ -142,12 +151,12 @@ public class MainActivity extends AppCompatActivity {
                                 }).setNegativeButton("권한 설정", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
                                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                                        .setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
-                                getApplicationContext().startActivity(intent);
+                                        .setData(Uri.parse("package:" + getPackageName()));
+                                startActivity(intent);
+                                dialog.dismiss();
                             }
-                        }).setCancelable(false).show();
+                        }).show();
                         return;
                     }
                 }

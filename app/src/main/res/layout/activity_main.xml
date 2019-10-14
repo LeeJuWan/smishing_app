@@ -4,16 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainactivity"
-    android:orientation="horizontal">
+    android:orientation="vertical">
     <!-- 백그라운드 메인 이미지 지정-->
-    
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="680dp"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/Start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/select_btn"
-            android:layout_marginTop="570dp"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:text="시작" />
 
         <Button
@@ -21,18 +27,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/select_btn"
-            android:layout_marginTop="570dp"
-            android:layout_weight="20"
-            android:text="도움말"
-            />
+            android:layout_weight="1"
+            android:text="도움말" />
+
         <Button
             android:id="@+id/End"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/select_btn"
-            android:layout_marginTop="570dp"
-            android:layout_weight="20"
-            android:text="나가기"
-            />
+            android:layout_weight="1"
+            android:text="나가기" />
 
+    </LinearLayout>
 </LinearLayout>

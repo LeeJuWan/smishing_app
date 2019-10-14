@@ -5,16 +5,8 @@ smishing_app
 
 기존의 연구용 탐지방법은 **Google에서 제공하는 SafeBrowsing api**를 사용하여 블랙리스트 기반으로
 탐지의 효율성을 확인 하였습니다.  
-관련 논문은 다음의 링크에서 확인할 수 있습니다.  
-<https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE08750031#none>  
-
-그러나 본 프로젝트 소스코드에서는 **알려지지 않은(Zero day)악성코드**를 염두하여
-화이트리스트 기반으로 코드를 수정하였습니다.  
-연구를 하면서 크게 느낀점은 좋은 기술보단 상황에 맞는 적절한 대응 방안을 고려하는게 중요하단걸 느꼈습니다.  
-
-본 프로젝트는 연구용 프로젝트이기에 따로 서버를 구축하거나 호스팅 하지 않았습니다.  
-
-
+그러나 본 프로젝트 소스코드에서는 알려지지 않은(Zero day)악성코드를 염두하여
+화이트리스트 기반으로 코드로 수정하였으며, 연구용 프로젝트이기에 따로 서버를 구축하지 않았습니다.
 
 만약 **Google safeBrowsing api**가 궁금하시다면 다음 링크 Google 개발문서를 참고바랍니다.  
 <https://developers.google.com/safe-browsing/v4/get-started> 

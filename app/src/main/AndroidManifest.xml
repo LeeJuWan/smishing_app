@@ -27,10 +27,9 @@
         </activity>
 
         <activity android:name=".MainActivity"/>
-        <activity android:name=".MessageActivity"/>
 
         <receiver
-            android:name="Service.SMSReceiverService">
+            android:name="service.SMSReceiverService">
             <intent-filter android:priority="999999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -39,12 +38,10 @@
 
 
         <service
-            android:name="Service.BackgroundService"
+            android:name="service.BackgroundService"
             android:enabled="true"
             android:exported="false">
-
         </service> <!-- 백그라운드 -->
 
     </application>
-
 </manifest>

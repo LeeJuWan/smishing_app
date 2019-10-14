@@ -1,39 +1,29 @@
-package Service;
+package service;
 
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
 
 import java.util.concurrent.ExecutionException;
 
-import Network.ExpanderNetwork;
-import UrlSource.IPCheck;
-import UrlSource.URL_Extract;
-import UrlSource.DomainCheck;
-import andbook.example.smishing.MessageActivity;
-import andbook.example.smishing.R;
-import UrlSource.Str_Data;
+import network.ExpanderNetwork;
+import util.AlarmChannel;
+import util.IPCheck;
+import util.NotificationNotOreo;
+import util.NotificationOreo;
+import util.URL_Extract;
+import util.DomainCheck;
+import util.STR_DATA;
 
 
 public class BackgroundService extends Service {
-    private static NotificationManager notificationManager;
-    private static NotificationCompat.Builder builder;
-    private static NotificationCompat.BigTextStyle bigTextStyle;
-
-    private Intent intent;
 
     private String sTR_Expander_URL = "";
     private String sTR_HEAD = "";
     private String sTR_BODY = "";
     private String sTR_URL="";
-    private final String phone = "(\\d{3})(\\d{3,4})(\\d{4})";
 
     private DomainCheck domainCheck = new DomainCheck();
     private IPCheck ipCheck = new IPCheck();
@@ -53,54 +43,99 @@ public class BackgroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        sTR_BODY = Str_Data.getStrBody();
-        sTR_HEAD = Str_Data.getStrHead(); //SMS 리시버를 통해 얻은 문자내용+수신자를 옮김
+        sTR_BODY = STR_DATA.getStrBody();
+        sTR_HEAD = STR_DATA.getStrHead(); //SMS 리시버를 통해 얻은 문자내용+수신자를 옮김
         sTR_URL = Extract.url_ExtractSub(sTR_BODY);
 
 
         if (sTR_URL.contains(".co.kr")) {
             if (domainCheck.co_kr_Check(sTR_URL) == 1) { //1일시 도메인 적합
-                send_NotifiCation_Safe();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf(); //작업 후 서비스 종료
-            } else {
-                send_NotifiCation_NotSafe();
+            }
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
-        } else if (sTR_URL.contains(".com")) {
+        }
+        else if (sTR_URL.contains(".com")) {
             if (domainCheck.com_Check(sTR_URL) == 1) {
-                send_NotifiCation_Safe();
-                stopSelf();
-            } else {
-                send_NotifiCation_NotSafe();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
-        } else if (sTR_URL.contains(".go.kr")) {
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                stopSelf();
+            }
+        }
+        else if (sTR_URL.contains(".go.kr")) {
             if (domainCheck.go_kr_Check(sTR_URL) == 1) {
-                send_NotifiCation_Safe();
-                stopSelf();
-            } else {
-                send_NotifiCation_NotSafe();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
-        } else if (sTR_URL.contains("http://naver.me")) {
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                stopSelf();
+            }
+        }
+        else if (sTR_URL.contains("http://naver.me"))
+        {
             //네이버 me는 네이버 서비스에서만 사용가능한 URL이기에
             //단축이여도 안전한 URL로 판단
-            send_NotifiCation_Safe();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+            else
+                NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
             stopSelf();
-        } else if (sTR_URL.contains(".net")) {
+        }
+        else if (sTR_URL.contains(".net")) {
             if (domainCheck.net_Check(sTR_URL) == 1) {
-                send_NotifiCation_Safe();
-                stopSelf();
-            } else {
-                send_NotifiCation_NotSafe();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
-        } else if (sTR_URL.contains(".ac.kr")) {
-            if (domainCheck.ac_kr_Check(sTR_URL) == 1) {
-                send_NotifiCation_Safe();
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
-            } else {
-                send_NotifiCation_NotSafe();
+            }
+        }
+        else if (sTR_URL.contains(".ac.kr"))
+        {
+            if (domainCheck.ac_kr_Check(sTR_URL) == 1) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                stopSelf();
+            }
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
         } else {
@@ -118,203 +153,137 @@ public class BackgroundService extends Service {
             }
             if (sTR_Expander_URL.contains("notFound")) {
                 //not found 페이지 삭제됬거나 찾지못함
-                send_Notification_NotFound();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_Notification_NotFound(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_Notification_NotFound(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
-            } else if (sTR_Expander_URL.contains(".apk") || sTR_Expander_URL.contains(".APK")) {
+            }
+            else if (sTR_Expander_URL.contains(".apk") || sTR_Expander_URL.contains(".APK")) {
                 //앱을 설치하라는 문자 또한 구글 플레이 스토어로 연결되는 URL이 포함되어 있기에
                 //모든 상황에서의 SMS 문자로는 apk포함 URL이 올 이유가 없기에 apk 포함 URL일 시 지체없이 악성파일로 판단
-                send_Notification_Malware();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_Notification_Malware(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_Notification_Malware(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
-            } else if (ipCheck.Check_identity_protocol(sTR_Expander_URL)) {
+            }
+            else if (ipCheck.Check_identity_protocol(sTR_Expander_URL)) {
                 //IP가 첨부된 URL을 탐지
-                send_Notification_IP();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_Notification_IP(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_Notification_IP(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
             //다시한번 확장된 URL의 도메인 적합성 진행
             else if (sTR_Expander_URL.contains(".co.kr")) {
-                if (domainCheck.co_kr_Check(sTR_Expander_URL) == 1) { //1일시 도메인 적합
-                    send_NotifiCation_Safe();
-                    stopSelf();
-                } else {
-                    send_NotifiCation_NotSafe();
-                    stopSelf();
-                }
-            } else if (sTR_Expander_URL.contains(".com")) {
-                if (domainCheck.com_Check(sTR_Expander_URL) == 1) {
-                    send_NotifiCation_Safe();
-                    stopSelf();
-                } else {
-                    send_NotifiCation_NotSafe();
+                if (domainCheck.co_kr_Check(sTR_Expander_URL) == 1)
+                { //1일시 도메인 적합
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                     stopSelf();
                 }
-            } else if (sTR_Expander_URL.contains(".go.kr")) {
-                if (domainCheck.go_kr_Check(sTR_Expander_URL) == 1) {
-                    send_NotifiCation_Safe();
-                    stopSelf();
-                } else {
-                    send_NotifiCation_NotSafe();
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                     stopSelf();
                 }
-            } else if (sTR_Expander_URL.contains("http://naver.me")) {
+            }
+            else if (sTR_Expander_URL.contains(".com"))
+            {
+                if (domainCheck.com_Check(sTR_Expander_URL) == 1)
+                {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+            }
+            else if (sTR_Expander_URL.contains(".go.kr"))
+            {
+                if (domainCheck.go_kr_Check(sTR_Expander_URL) == 1)
+                {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+            }
+            else if (sTR_Expander_URL.contains("http://naver.me"))
+            {
                 //네이버 me는 네이버 서비스에서만 사용가능한 URL이기에
                 //단축이여도 안전한 URL로 판단
-                send_NotifiCation_Safe();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
-            } else if (sTR_Expander_URL.contains(".net")) {
-                if (domainCheck.net_Check(sTR_Expander_URL) == 1) {
-                    send_NotifiCation_Safe();
-                    stopSelf();
-                } else {
-                    send_NotifiCation_NotSafe();
-                    stopSelf();
-                }
-            } else if (sTR_Expander_URL.contains(".ac.kr")) {
-                if (domainCheck.ac_kr_Check(sTR_Expander_URL) == 1) {
-                    send_NotifiCation_Safe();
-                    stopSelf();
-                } else {
-                    send_NotifiCation_NotSafe();
+            }
+            else if (sTR_Expander_URL.contains(".net"))
+            {
+                if (domainCheck.net_Check(sTR_Expander_URL) == 1)
+                {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                     stopSelf();
                 }
-            } else {
-                send_NotifiCation_NotSafe();
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+            }
+            else if (sTR_Expander_URL.contains(".ac.kr"))
+            {
+                if (domainCheck.ac_kr_Check(sTR_Expander_URL) == 1)
+                {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                    else
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
+                    stopSelf();
+                }
+            }
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,sTR_HEAD,sTR_BODY);
+                else
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),sTR_HEAD,sTR_BODY);
                 stopSelf();
             }
         }
         return super.onStartCommand(intent, flags, startId);
-    }
-
-    //안전문자 푸시
-    private void send_NotifiCation_Safe() {
-        intent = new Intent(getApplicationContext(), MessageActivity.class);
-        intent.putExtra("body",sTR_BODY);
-        intent.putExtra("head",sTR_HEAD);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(getApplicationContext());
-        bigTextStyle = new NotificationCompat.BigTextStyle(builder);
-
-        builder.setSmallIcon(R.drawable.small); //아이콘 추가
-        builder.setTicker("안전한 SMS 문자입니다.");
-        builder.setWhen(System.currentTimeMillis());
-        builder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.big)); //알림내용 왼쪽 큰 아이콘 적용
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);//진동으로 알람 진행
-        builder.setContentTitle(sTR_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("안전한 SMS 문자입니다.");
-        builder.setAutoCancel(true);
-        builder.setContentIntent(pendingIntent);
-        bigTextStyle.setBigContentTitle(sTR_HEAD);
-        bigTextStyle.bigText(sTR_BODY);
-        notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
-    }
-
-    //의심문자 푸시
-    private void send_NotifiCation_NotSafe() {
-        intent = new Intent(getApplicationContext(), MessageActivity.class);
-        intent.putExtra("body",sTR_BODY);
-        intent.putExtra("head",sTR_HEAD);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(getApplicationContext());
-        bigTextStyle = new NotificationCompat.BigTextStyle(builder);
-
-        builder.setSmallIcon(R.drawable.small); //아이콘 추가
-        builder.setTicker("스미싱으로 의심되는 문자입니다.조심하세요.");
-        builder.setWhen(System.currentTimeMillis());
-        builder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.big)); //알림내용 왼쪽 큰 아이콘 적용
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);//진동으로 알람 진행
-        builder.setContentTitle(sTR_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("스미싱으로 의심되는 문자입니다.조심하세요.");
-        builder.setAutoCancel(true);
-        builder.setContentIntent(pendingIntent);
-        bigTextStyle.setBigContentTitle(sTR_HEAD);
-        bigTextStyle.bigText(sTR_BODY);
-        notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
-    }
-
-    //악성코드 푸시
-    private void send_Notification_Malware() {
-        intent = new Intent(getApplicationContext(), MessageActivity.class);
-        intent.putExtra("body",sTR_BODY);
-        intent.putExtra("head",sTR_HEAD);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(getApplicationContext());
-        bigTextStyle = new NotificationCompat.BigTextStyle(builder);
-
-        builder.setSmallIcon(R.drawable.small); //아이콘 추가
-        builder.setTicker("악성코드가 포함된 문자입니다.");
-        builder.setWhen(System.currentTimeMillis());
-        builder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.big)); //알림내용 왼쪽 큰 아이콘 적용
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);//진동으로 알람 진행
-        builder.setContentTitle(sTR_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("악성코드가 포함된 문자입니다.");
-        builder.setAutoCancel(true);
-        builder.setContentIntent(pendingIntent);
-        bigTextStyle.setBigContentTitle(sTR_HEAD);
-        bigTextStyle.bigText(sTR_BODY);
-        notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
-    }
-
-    //공격자 서버 주소 푸시
-    private void send_Notification_IP() {
-        intent = new Intent(getApplicationContext(), MessageActivity.class);
-        intent.putExtra("body",sTR_BODY);
-        intent.putExtra("head",sTR_HEAD);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(getApplicationContext());
-        bigTextStyle = new NotificationCompat.BigTextStyle(builder);
-
-        builder.setSmallIcon(R.drawable.small); //아이콘 추가
-        builder.setTicker("서버 주소가 포함된 문자입니다.조심하세요.");
-        builder.setWhen(System.currentTimeMillis());
-        builder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.big)); //알림내용 왼쪽 큰 아이콘 적용
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);//진동으로 알람 진행
-        builder.setContentTitle(sTR_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("서버 주소가 포함된 문자입니다.조심하세요.");
-        builder.setAutoCancel(true);
-        builder.setContentIntent(pendingIntent);
-        bigTextStyle.setBigContentTitle(sTR_HEAD);
-        bigTextStyle.bigText(sTR_BODY);
-        notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
-    }
-
-    private void send_Notification_NotFound() {
-        intent = new Intent(getApplicationContext(), MessageActivity.class);
-        intent.putExtra("body",sTR_BODY);
-        intent.putExtra("head",sTR_HEAD);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(getApplicationContext());
-        bigTextStyle = new NotificationCompat.BigTextStyle(builder);
-
-        builder.setSmallIcon(R.drawable.small); //아이콘 추가
-        builder.setTicker("없는 사이트 이거나 알수없음.");
-        builder.setWhen(System.currentTimeMillis());
-        builder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.big)); //알림내용 왼쪽 큰 아이콘 적용
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);//진동으로 알람 진행
-        builder.setContentTitle(sTR_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("없는 사이트 이거나 알수없음.");
-        builder.setAutoCancel(true);
-        builder.setContentIntent(pendingIntent);
-        bigTextStyle.setBigContentTitle(sTR_HEAD);
-        bigTextStyle.bigText(sTR_BODY);
-        notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
     }
 }
