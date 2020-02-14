@@ -1,4 +1,4 @@
-package network;
+package Network_Utill;
 
 
 import android.os.AsyncTask;
@@ -13,7 +13,8 @@ public class ExpanderNetwork extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String expand_URL = null;
+
+        String expand_URL = "";
         try {
             URL url = new URL(params[0]);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection(Proxy.NO_PROXY);
@@ -21,17 +22,16 @@ public class ExpanderNetwork extends AsyncTask<String, Void, String> {
             connection.connect();
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND)
-                expand_URL = "notFound";
+                expand_URL = "notFound"; // 없는 페이지일 시
             else
                 expand_URL = connection.getHeaderField("Location");
-            connection.getInputStream().close();
+
+            connection.getInputStream().close(); // 연결 종료
         } catch (MalformedURLException e) {
-            System.err.println("Async MalformedURLException");
+            System.err.println("ExpanderNetwork MalformedURLException");
         } catch (IOException e) {
-            System.err.println("Expander IOException");
+            System.err.println("ExpanderNetwork IOException");
         }
-        if (expand_URL == null)
-            expand_URL = "notFound";
         return expand_URL;
     }
 }

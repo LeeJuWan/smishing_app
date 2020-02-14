@@ -13,11 +13,11 @@ public class SplashActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); // 상태바 제거
         try{
-            Thread.sleep(2000); //대기초 설정
-            startActivity(new Intent(this,MainActivity.class));
+            Thread.sleep(2000); // 대기초 설정
+            startActivity(new Intent(SplashActivity.this,MainActivity.class));
             finish();
         }catch (InterruptedException e){
-            e.printStackTrace();
+           System.err.println("SplashActivity InterruptedException error");
         }
     }
 }

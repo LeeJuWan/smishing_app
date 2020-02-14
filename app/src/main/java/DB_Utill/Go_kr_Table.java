@@ -1,7 +1,7 @@
-package link_data;
+package DB_Utill;
 
 public class Go_kr_Table {
-    private String[] go= {"http://www.president.go.kr","http://edu.humanrights.go.kr", "http://www.bai.go.kr", "http://www.humanrights.go.kr",
+    private final String[] go= {"http://www.president.go.kr","http://edu.humanrights.go.kr", "http://www.bai.go.kr", "http://www.humanrights.go.kr",
             "https://www.pacst.go.kr", "http://pss.go.kr", "http://webzine.nuac.go.kr", "http://www.nuac.go.kr",
             "http://www.humangongmo.kr", "http://library.humanrights.go.kr", "http://www.nis.go.kr",
             "http://www.bai-eri.go.kr", "http://english.bai.go.kr", "http://service5.nis.go.kr",
@@ -17,10 +17,11 @@ public class Go_kr_Table {
             "http://www.kosaf.go.kr","https://www.spo.go.kr","http://www.spo.go.kr","http://www.academyinfo.go.kr"
     };
 
+    // 외부에서 직접 접근 방지 객체 복사진행 캡슐화 유지
     public String[] go_Table_Getter()
     {
         String[] new_go=new String[go.length];
-        System.arraycopy(go,0,new_go,0,go.length);//외부에서 직접 접근 방지 객체 복사진행 캡슐화 유지
+        System.arraycopy(go,0,new_go,0,go.length);
         return new_go;
     }
 }

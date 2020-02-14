@@ -1,4 +1,4 @@
-package util;
+package Alarm_Utill;
 
 import android.annotation.TargetApi;
 import android.app.NotificationChannel;
@@ -52,5 +52,4 @@ public class AlarmChannel {
         channelMessage.enableVibration(true); // 진동 가능
         notificationManager.createNotificationChannel(channelMessage);
     }
-
 }

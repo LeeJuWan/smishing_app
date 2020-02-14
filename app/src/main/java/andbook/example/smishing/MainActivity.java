@@ -14,13 +14,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import util.AlarmChannel;
+import Alarm_Utill.AlarmChannel;
 
 
 /*
@@ -54,21 +53,26 @@ import util.AlarmChannel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int PERMISSIONREQUEST_RESULT = 100; // 콜백 호출시 requestcode로 넘어가는 구분자
+    // 콜백 호출시 requestcode로 넘어가는 구분자
+    private final int PERMISSIONREQUEST_RESULT = 100;
 
+    private Button start,
+            end,
+            info;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); //상태바 제거
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); // 상태바 제거
 
-        Button start = (Button) findViewById(R.id.Start);
-        Button end = (Button) findViewById(R.id.End);
-        Button info = (Button) findViewById(R.id.Infomation);
+        initView();
 
-        AlarmChannel.createChannel(getApplicationContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // 오레오 이상 버전 알람채널 생성 진행
+            AlarmChannel.createChannel(getApplicationContext());
+        }
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,15 +84,17 @@ public class MainActivity extends AppCompatActivity {
                     CheckPermission();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "탐지중 (마시멜로우 미만 버전용)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "탐지중\n"+"(마시멜로우 미만 버전용)", Toast.LENGTH_SHORT).show();
             }
         });
+
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss(); //닫기
+                                        dialog.dismiss(); // 닫기
                                     }
                                 }).show();
             }
@@ -110,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //퍼미션 권한 진행 함수
+    // 퍼미션 권한 진행 함수
     private void CheckPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_DENIED) {
-            //사용자의 최초 퍼미션 허용을 확인         -true: 사용자 퍼미션 거부 , -false: 사용자 동의 미 필요
+            // 사용자의 최초 퍼미션 허용을 확인         -true: 사용자 퍼미션 거부 , -false: 사용자 동의 미 필요
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECEIVE_SMS)) {
                 Toast.makeText(getApplicationContext(), "권한이 필요합니다.", Toast.LENGTH_SHORT).show();
                 ActivityCompat.requestPermissions(this,
@@ -125,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.RECEIVE_SMS},
                         PERMISSIONREQUEST_RESULT);
             }
-
         }
     }
 
@@ -137,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResult.length > 0) {
                 for (int aGrantResult : grantResult) {
                     if (aGrantResult == PackageManager.PERMISSION_DENIED) {
-                        //권한이 하나라도 거부 될 시
+                        // 권한이 하나라도 거부 될 시
                         new AlertDialog.Builder(MainActivity.this)
                                 .setCancelable(false)
                                 .setTitle("사용 권한의 문제발생")
@@ -162,5 +167,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void initView(){
+        start = (Button) findViewById(R.id.Start);
+        end = (Button) findViewById(R.id.End);
+        info = (Button) findViewById(R.id.Infomation);
     }
 }

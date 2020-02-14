@@ -1,7 +1,7 @@
-package link_data;
+package DB_Utill;
 
 public class Com_Table {
-    private String[] com = {"http://www.benikea.com", "http://www.asiaculturecity.com", "https://www.gsshop.com",
+    private final String[] com = {"http://www.benikea.com", "http://www.asiaculturecity.com", "https://www.gsshop.com",
             "http://www.samsung.com", "https://www.samsung.com", "https://www.hyundai.com", "http://www.hyundai.com",
             "http://www.doosan.com", "https://www.hyosungitx.com", "http://www.harim.com", "http://www.s-oil.com",
             "http://www.kumhoasiana.com", "https://kr.koreanair.com", "https://www.eastarjet.com", "https://banking.nonghyup.com",
@@ -19,9 +19,10 @@ public class Com_Table {
             "https://www.skinfosec.com", "http://www.skinfosec.com"
     };
 
+    // 외부에서 직접 접근 방지 객체 복사진행 캡슐화 유지
     public String[] com_Table_Getter() {
         String[] new_com = new String[com.length];
-        System.arraycopy(com, 0, new_com, 0, com.length);//외부에서 직접 접근 방지 객체 복사진행 캡슐화 유지
+        System.arraycopy(com, 0, new_com, 0, com.length);
         return new_com;
 
     }
