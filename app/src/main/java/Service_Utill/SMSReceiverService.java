@@ -39,7 +39,8 @@ public class SMSReceiverService extends BroadcastReceiver {
 
                 // 문자 내용에 URL이 있는지 확인 후 백그라운드로 작업진행 없다면 else
                 if (str_body.contains("http://") || str_body.contains("https://") || str_body.contains("www.")
-                        || str_body.contains(".com") || str_body.contains(".kr") || str_body.contains(".ly")) {
+                        || str_body.contains(".com") || str_body.contains(".kr") || str_body.contains(".ly") ||
+                        str_body.contains(".xyz")) {
                     // 백그라운드 분석을 위해 static 변수에 삽입
                     STR_DATA.strBody = msg[0].getMessageBody();
                     STR_DATA.strHead = msg[0].getOriginatingAddress();

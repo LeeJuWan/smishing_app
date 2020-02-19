@@ -15,7 +15,7 @@ public class NotificationOreo {
 
     private static Notification.Builder builder; // 푸시알람 빌더 생성
     private static NotificationManager notificationManager; // 푸시 알람 매니저 생성
-    private static Notification.BigTextStyle bigTextStyle; // 푸시 알람 핀치줌을 위한 텍스트 스타일 생성
+
 
 
     // 안전문자 푸시
@@ -30,13 +30,14 @@ public class NotificationOreo {
         builder.setWhen(System.currentTimeMillis());
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.big)); // 알림내용 왼쪽 큰 아이콘 적용
         builder.setDefaults(Notification.DEFAULT_VIBRATE);// 진동으로 알람 진행
-        builder.setContentTitle(str_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("문자가 도착하였습니다. 안전한 SMS 문자입니다.");
+        builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
+        builder.setStyle(new Notification.BigTextStyle()
+                .setSummaryText("안전한 SMS 문자입니다.")
+                .bigText("문자내용: "+str_BODY)
+                .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
+                .build();
 
-        bigTextStyle = new Notification.BigTextStyle(builder);
-        bigTextStyle.setBigContentTitle("보낸사람: "+str_HEAD);
-        bigTextStyle.bigText("문자내용: "+str_BODY);
         notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
     }
 
@@ -51,13 +52,14 @@ public class NotificationOreo {
         builder.setWhen(System.currentTimeMillis());
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.big)); // 알림내용 왼쪽 큰 아이콘 적용
         builder.setDefaults(Notification.DEFAULT_VIBRATE);// 진동으로 알람 진행
-        builder.setContentTitle(str_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("문자가 도착하였습니다. 스미싱으로 의심되는 문자입니다. 조심하세요.");
+        builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
+        builder.setStyle(new Notification.BigTextStyle()
+                .setSummaryText("스미싱으로 의심되는 문자입니다.")
+                .bigText("문자내용: "+str_BODY)
+                .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
+                .build();
 
-        bigTextStyle = new Notification.BigTextStyle(builder);
-        bigTextStyle.setBigContentTitle("보낸사람: "+str_HEAD);
-        bigTextStyle.bigText("문자내용: "+str_BODY);
         notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
     }
 
@@ -72,13 +74,14 @@ public class NotificationOreo {
         builder.setWhen(System.currentTimeMillis());
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.big)); // 알림내용 왼쪽 큰 아이콘 적용
         builder.setDefaults(Notification.DEFAULT_VIBRATE);// 진동으로 알람 진행
-        builder.setContentTitle(str_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("문자가 도착하였습니다. 악성코드가 포함된 문자입니다. 조심하세요.");
+        builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
+        builder.setStyle(new Notification.BigTextStyle()
+                .setSummaryText("스미싱으로 의심되는 문자입니다.")
+                .bigText("문자내용: "+str_BODY)
+                .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
+                .build();
 
-        bigTextStyle = new Notification.BigTextStyle(builder);
-        bigTextStyle.setBigContentTitle("보낸사람: "+str_HEAD);
-        bigTextStyle.bigText("문자내용: "+str_BODY);
         notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
     }
 
@@ -93,13 +96,14 @@ public class NotificationOreo {
         builder.setWhen(System.currentTimeMillis());
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.big)); // 알림내용 왼쪽 큰 아이콘 적용
         builder.setDefaults(Notification.DEFAULT_VIBRATE);// 진동으로 알람 진행
-        builder.setContentTitle(str_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("문자가 도착하였습니다. 서버 주소가 포함된 문자입니다. 조심하세요.");
+        builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
+        builder.setStyle(new Notification.BigTextStyle()
+                .setSummaryText("스미싱으로 의심되는 문자입니다.")
+                .bigText("문자내용: "+str_BODY)
+                .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
+                .build();
 
-        bigTextStyle = new Notification.BigTextStyle(builder);
-        bigTextStyle.setBigContentTitle("보낸사람: "+str_HEAD);
-        bigTextStyle.bigText("문자내용: "+str_BODY);
         notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
     }
 
@@ -114,13 +118,14 @@ public class NotificationOreo {
         builder.setWhen(System.currentTimeMillis());
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.big)); // 알림내용 왼쪽 큰 아이콘 적용
         builder.setDefaults(Notification.DEFAULT_VIBRATE);// 진동으로 알람 진행
-        builder.setContentTitle(str_HEAD.replaceAll(phone, "$1-$2-$3"));
-        builder.setContentText("문자가 도착하였습니다. 없는 사이트 이거나 알수없음.");
+        builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
+        builder.setStyle(new Notification.BigTextStyle()
+                .setSummaryText("없는 사이트 이거나 알수없음.")
+                .bigText("문자내용: "+str_BODY)
+                .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
+                .build();
 
-        bigTextStyle = new Notification.BigTextStyle(builder);
-        bigTextStyle.setBigContentTitle("보낸사람: "+str_HEAD);
-        bigTextStyle.bigText("문자내용: "+str_BODY);
         notificationManager.notify((int) (System.currentTimeMillis() / 1000), builder.build());
     }
 }
