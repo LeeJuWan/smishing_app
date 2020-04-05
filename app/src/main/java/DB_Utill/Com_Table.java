@@ -16,7 +16,8 @@ public class Com_Table {
             "http://앱다운.com", "https://play.google.com", "https://www.naver.com", "http://www.naver.com",
             "https://www.estsecurity.com", "http://www.estsecurity.com", "http://www.tistory.com", "https://www.tistory.com",
             "http://www.nate.com", "https://www.nate.com", "http://zum.com", "http://www.google.com", "https://www.google.com",
-            "https://www.skinfosec.com", "http://www.skinfosec.com"
+            "https://www.skinfosec.com", "http://www.skinfosec.com","https://www.coupang.com","https://m.coupang.com","https://coupa.ng",
+            "https://www.tumblr.com"
     };
 
     // 외부에서 직접 접근 방지 객체 복사진행 캡슐화 유지
