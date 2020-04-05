@@ -57,48 +57,48 @@ public class BackgroundService extends Service {
         if (str_URL.contains(".co.kr")) {
             if (domainCheck.co_kr_Check(str_URL) == 1) { // 1일시 도메인 적합
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf(); // 작업 후 서비스 종료
             }
             else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
         }
         else if (str_URL.contains(".com")) {
             if (domainCheck.com_Check(str_URL) == 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
             else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
         }
         else if (str_URL.contains(".go.kr")) {
             if (domainCheck.go_kr_Check(str_URL) == 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
             else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
         }
@@ -107,24 +107,24 @@ public class BackgroundService extends Service {
             //네이버 me는 네이버 서비스에서만 사용가능한 URL이기에
             //단축이여도 안전한 URL로 판단
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
             else
-                NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
             stopSelf();
         }
         else if (str_URL.contains(".net")) {
             if (domainCheck.net_Check(str_URL) == 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
             else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
         }
@@ -132,16 +132,16 @@ public class BackgroundService extends Service {
         {
             if (domainCheck.ac_kr_Check(str_URL) == 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
             else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_URL);
                 stopSelf();
             }
         } else {
@@ -168,17 +168,17 @@ public class BackgroundService extends Service {
                 // 앱을 설치하라는 문자 또한 구글 플레이 스토어로 연결되는 URL이 포함되어 있기에
                 // 모든 상황에서의 SMS 문자로는 'apk포함' URL이 올 이유가 없기에 'apk포함' URL일 시 지체없이 악성파일로 판단
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_Notification_Malware(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_Notification_Malware(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                 else
-                    NotificationNotOreo.send_Notification_Malware(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_Notification_Malware(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                 stopSelf();
             }
             else if (ipCheck.Check_identity_protocol(str_Expander_URL)) {
                 // ip가 첨부된 URL을 탐지
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_Notification_IP(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_Notification_IP(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                 else
-                    NotificationNotOreo.send_Notification_IP(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_Notification_IP(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                 stopSelf();
             }
             // 다시한번 확장된 URL의 도메인 적합성 진행
@@ -186,16 +186,16 @@ public class BackgroundService extends Service {
                 if (domainCheck.co_kr_Check(str_Expander_URL) == 1)
                 { // 1일시 도메인 적합
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
             }
@@ -204,16 +204,16 @@ public class BackgroundService extends Service {
                 if (domainCheck.com_Check(str_Expander_URL) == 1)
                 {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
             }
@@ -222,16 +222,16 @@ public class BackgroundService extends Service {
                 if (domainCheck.go_kr_Check(str_Expander_URL) == 1)
                 {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
             }
@@ -240,9 +240,9 @@ public class BackgroundService extends Service {
                 // 네이버 me는 네이버 서비스에서만 사용가능한 URL이기에
                 // 단축이여도 안전한 URL로 판단
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                 stopSelf();
             }
             else if (str_Expander_URL.contains(".net"))
@@ -250,16 +250,16 @@ public class BackgroundService extends Service {
                 if (domainCheck.net_Check(str_Expander_URL) == 1)
                 {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
             }
@@ -268,24 +268,24 @@ public class BackgroundService extends Service {
                 if (domainCheck.ac_kr_Check(str_Expander_URL) == 1)
                 {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_Safe(getApplicationContext(), AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_Safe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                        NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                     else
-                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                        NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                     stopSelf();
                 }
             }
-            else {
+            else { // White list에 없는 사이트
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY);
+                    NotificationOreo.send_NotifiCation_NotSafe(getApplicationContext(),AlarmChannel.Channel.MESSAGE_ID,str_HEAD,str_BODY,str_Expander_URL);
                 else
-                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY);
+                    NotificationNotOreo.send_NotifiCation_NotSafe(getApplicationContext(),str_HEAD,str_BODY,str_Expander_URL);
                 stopSelf();
             }
         }
