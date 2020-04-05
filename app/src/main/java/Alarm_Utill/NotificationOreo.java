@@ -20,7 +20,7 @@ public class NotificationOreo {
 
     // 안전문자 푸시
     @TargetApi(Build.VERSION_CODES.O)
-    public static void send_NotifiCation_Safe(Context context, @AlarmChannel.Channel String channel, String str_HEAD, String str_BODY) {
+    public static void send_NotifiCation_Safe(Context context, @AlarmChannel.Channel String channel, String str_HEAD, String str_BODY,String str_URL) {
 
         notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new Notification.Builder(context,channel);
@@ -34,7 +34,7 @@ public class NotificationOreo {
         builder.setAutoCancel(true);
         builder.setStyle(new Notification.BigTextStyle()
                 .setSummaryText("안전한 SMS 문자입니다.")
-                .bigText("문자내용: "+str_BODY)
+                .bigText("문자내용: "+str_BODY+"\n\n"+"##접속주소: "+str_URL)
                 .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
                 .build();
 
@@ -43,7 +43,7 @@ public class NotificationOreo {
 
     // 의심문자 푸시
     @TargetApi(Build.VERSION_CODES.O)
-    public static void send_NotifiCation_NotSafe(Context context,@AlarmChannel.Channel String channel,String str_HEAD,String str_BODY) {
+    public static void send_NotifiCation_NotSafe(Context context,@AlarmChannel.Channel String channel,String str_HEAD,String str_BODY,String str_URL) {
 
         notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new Notification.Builder(context,channel);
@@ -56,7 +56,7 @@ public class NotificationOreo {
         builder.setAutoCancel(true);
         builder.setStyle(new Notification.BigTextStyle()
                 .setSummaryText("스미싱으로 의심되는 문자입니다.")
-                .bigText("문자내용: "+str_BODY)
+                .bigText("문자내용: "+str_BODY+"\n\n"+"##접속주소: "+str_URL)
                 .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
                 .build();
 
@@ -65,7 +65,7 @@ public class NotificationOreo {
 
     // 악성코드 푸시
     @TargetApi(Build.VERSION_CODES.O)
-    public static void send_Notification_Malware(Context context,@AlarmChannel.Channel String channel,String str_HEAD,String str_BODY) {
+    public static void send_Notification_Malware(Context context,@AlarmChannel.Channel String channel,String str_HEAD,String str_BODY,String str_URL) {
 
         notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new Notification.Builder(context,channel);
@@ -77,8 +77,8 @@ public class NotificationOreo {
         builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
         builder.setStyle(new Notification.BigTextStyle()
-                .setSummaryText("스미싱으로 의심되는 문자입니다.")
-                .bigText("문자내용: "+str_BODY)
+                .setSummaryText("스미싱 문자입니다.")
+                .bigText("문자내용: "+str_BODY+"\n\n"+"##접속주소: "+str_URL)
                 .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
                 .build();
 
@@ -87,7 +87,7 @@ public class NotificationOreo {
 
     // 공격자 서버 주소 푸시
     @TargetApi(Build.VERSION_CODES.O)
-    public static void send_Notification_IP(Context context,@AlarmChannel.Channel String channel,String str_HEAD,String str_BODY) {
+    public static void send_Notification_IP(Context context,@AlarmChannel.Channel String channel,String str_HEAD,String str_BODY,String str_URL) {
 
         notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new Notification.Builder(context,channel);
@@ -99,8 +99,8 @@ public class NotificationOreo {
         builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
         builder.setStyle(new Notification.BigTextStyle()
-                .setSummaryText("스미싱으로 의심되는 문자입니다.")
-                .bigText("문자내용: "+str_BODY)
+                .setSummaryText("스미싱 문자입니다.")
+                .bigText("문자내용: "+str_BODY+"\n\n"+"##접속주소: "+str_URL)
                 .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
                 .build();
 
@@ -121,7 +121,7 @@ public class NotificationOreo {
         builder.setContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3"));
         builder.setAutoCancel(true);
         builder.setStyle(new Notification.BigTextStyle()
-                .setSummaryText("없는 사이트 이거나 알수없음.")
+                .setSummaryText("없는 사이트 이거나 알수없음")
                 .bigText("문자내용: "+str_BODY)
                 .setBigContentTitle("발신번호: "+str_HEAD.replaceAll(phone, "$1-$2-$3")))
                 .build();

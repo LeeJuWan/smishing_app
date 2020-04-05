@@ -48,6 +48,9 @@ import Alarm_Utill.AlarmChannel;
  * --------------------------------------------------
  * 개선: android version up 28 , 알람 채널 생성 및 오레오 , 오레오 미만 버전 별로 Notification 구현
  * UI 위치 수정 , 파일명 refector
+ * --------------------------------------------------
+ * 2020.04.05
+ * 개선: PI버전 HTTP 보안 이슈 제거 - http 프로토콜은 'NetworkSecurityConfig' 에러 발생으로 사이트를 가져올 수 없어 스미싱 비교불가 이슈 제거
  * */
 
 

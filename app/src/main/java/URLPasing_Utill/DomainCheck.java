@@ -39,14 +39,16 @@ public class DomainCheck {
     }
 
     public int co_kr_Check(String str_url) {
-
+        StringBuilder stringBuilder = new StringBuilder();
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(str_url);
 
-        if (m.find());
+        if (m.find()) {
+            stringBuilder.append(m.group());
+        }
 
         for (int i = 0; i < co_kr_table.co_Kr_Table_Getter().length; i++) {
-            if (co_kr_table.co_Kr_Table_Getter()[i].equals(m.group())) {
+            if (co_kr_table.co_Kr_Table_Getter()[i].equals(stringBuilder.toString())) {
                 // co.kr 테이블에 일치하는 URL 존재할 시
                 CO = 1;// 도메인이 적합하므로 1을반환하여 적합성을 표시
                 break;
@@ -56,13 +58,16 @@ public class DomainCheck {
     }
 
     public int go_kr_Check(String str_url) {
+        StringBuilder stringBuilder = new StringBuilder();
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(str_url);
 
-        if (m.find());
+        if (m.find()) {
+            stringBuilder.append(m.group());
+        }
 
         for (int i = 0; i < go_kr_table.go_Table_Getter().length; i++) {
-            if (go_kr_table.go_Table_Getter()[i].equals(m.group())) {
+            if (go_kr_table.go_Table_Getter()[i].equals(stringBuilder.toString())) {
                 // go.kr 테이블에 일치하는 URL 존재할 시
                 GO = 1; // 도메인이 적합하므로 1을반환하여 적합성을 표시
                 break;
@@ -72,13 +77,16 @@ public class DomainCheck {
     }
 
     public int com_Check(String str_url) {
+        StringBuilder stringBuilder = new StringBuilder();
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(str_url);
 
-        if (m.find()) ;
+        if (m.find()) {
+            stringBuilder.append(m.group());
+        }
 
         for (int i = 0; i < com_table.com_Table_Getter().length; i++) {
-            if (com_table.com_Table_Getter()[i].equals(m.group())) {
+            if (com_table.com_Table_Getter()[i].equals(stringBuilder.toString())) {
                 // com 테이블에 일치하는 URL 존재할 시
                 COM = 1;// 도메인이 적합하므로 1을반환하여 적합성을 표시
                 break;
@@ -89,13 +97,16 @@ public class DomainCheck {
     }
 
     public int net_Check(String str_url) {
+        StringBuilder stringBuilder = new StringBuilder();
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(str_url);
 
-        if (m.find()) ;
+        if (m.find()) {
+            stringBuilder.append(m.group());
+        }
 
         for (int i = 0; i < net_table.net_Table_Getter().length; i++) {
-            if (net_table.net_Table_Getter()[i].equals(m.group())) {
+            if (net_table.net_Table_Getter()[i].equals(stringBuilder.toString())) {
                 // net 테이블에 일치하는 URL 존재할 시
                 NET = 1;// 도메인이 적합하므로 1을반환하여 적합성을 표시
                 break;
@@ -106,13 +117,16 @@ public class DomainCheck {
     }
 
     public int ac_kr_Check(String str_url) {
+        StringBuilder stringBuilder = new StringBuilder();
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(str_url);
 
-        if (m.find()) ;
+        if (m.find()) {
+            stringBuilder.append(m.group());
+        }
 
         for (int i = 0; i < ac_kr_table.ac_Kr_Table_Getter().length; i++) {
-            if (ac_kr_table.ac_Kr_Table_Getter()[i].equals(m.group())) {
+            if (ac_kr_table.ac_Kr_Table_Getter()[i].equals(stringBuilder.toString())) {
                 // ac.kr 테이블에 일치하는 URL 존재할 시
                 AC = 1;// 도메인이 적합하므로 1을반환하여 적합성을 표시
                 break;
