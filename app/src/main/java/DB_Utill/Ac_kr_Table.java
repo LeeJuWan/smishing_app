@@ -6,7 +6,7 @@ public class Ac_kr_Table {
             "https://songeui.catholic.ac.kr","http://songeui.catholic.ac.kr","http://www.mtu.ac.kr","https://www.mtu.ac.kr",
             "http://www.konkuk.ac.kr","https://www.konkuk.ac.kr","https://www.gwnu.ac.kr","http://www.gwnu.ac.kr",
             "http://www.kangwon.ac.kr","https://www.kangwon.ac.kr","http://graduate.kangwon.ac.kr","http://gsba.kangwon.ac.kr",
-            "http://www.knu.ac.kr","https://www.knu.ac.kr","http://www.gnu.ac.kr","https://www.gnu.ac.kr"
+            "http://www.knu.ac.kr","https://www.knu.ac.kr","http://www.gnu.ac.kr","https://www.gnu.ac.kr","https://www.kongju.ac.kr"
     };
 
 
