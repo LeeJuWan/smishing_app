@@ -1,4 +1,4 @@
-package DB_Utill;
+package db_utill;
 
 public class Net_Table {
 

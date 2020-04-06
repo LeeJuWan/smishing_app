@@ -1,4 +1,4 @@
-package DB_Utill;
+package db_utill;
 
 public class Co_kr_Table {
     private final String[] co= {"http://www.sk.co.kr","http://www.posco.co.kr", "http://www.hyosung.co.kr",

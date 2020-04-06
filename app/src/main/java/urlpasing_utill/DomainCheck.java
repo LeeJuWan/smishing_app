@@ -1,14 +1,14 @@
-package URLPasing_Utill;
+package urlpasing_utill;
 
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import DB_Utill.Ac_kr_Table;
-import DB_Utill.Co_kr_Table;
-import DB_Utill.Com_Table;
-import DB_Utill.Go_kr_Table;
-import DB_Utill.Net_Table;
+import db_utill.Ac_kr_Table;
+import db_utill.Co_kr_Table;
+import db_utill.Com_Table;
+import db_utill.Go_kr_Table;
+import db_utill.Net_Table;
 
 public class DomainCheck {
     private final String regex = "(http://|https://|www)(([a-z\\d]([a-z\\d-]*[a-z\\d])|([ㄱ-힣])*)\\.)+(([a-z]{2,}))"; //프로토콜,호스트만 추출

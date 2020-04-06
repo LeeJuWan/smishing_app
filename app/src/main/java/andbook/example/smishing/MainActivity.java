@@ -19,7 +19,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import Alarm_Utill.AlarmChannel;
+import alarm_utill.AlarmChannel;
 
 
 /*

@@ -1,4 +1,4 @@
-package URLPasing_Utill;
+package urlpasing_utill;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

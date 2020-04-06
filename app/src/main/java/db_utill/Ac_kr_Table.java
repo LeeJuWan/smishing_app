@@ -1,4 +1,4 @@
-package DB_Utill;
+package db_utill;
 
 public class Ac_kr_Table {
     private final String[] ac= {"http://www.kongju.ac.kr","http://www.snu.ac.kr","https://www.snu.ac.kr","https://www.business.kaist.ac.kr",

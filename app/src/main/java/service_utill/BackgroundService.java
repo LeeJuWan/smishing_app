@@ -1,4 +1,4 @@
-package Service_Utill;
+package service_utill;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,14 +7,14 @@ import android.os.IBinder;
 
 import java.util.concurrent.ExecutionException;
 
-import Network_Utill.ExpanderNetwork;
-import Alarm_Utill.AlarmChannel;
-import Alarm_Utill.NotificationNotOreo;
-import Alarm_Utill.NotificationOreo;
-import URLPasing_Utill.DomainCheck;
-import URLPasing_Utill.IPCheck;
-import URLPasing_Utill.STR_DATA;
-import URLPasing_Utill.URLExtract;
+import network_utill.ExpanderNetwork;
+import alarm_utill.AlarmChannel;
+import alarm_utill.NotificationNotOreo;
+import alarm_utill.NotificationOreo;
+import urlpasing_utill.DomainCheck;
+import urlpasing_utill.IPCheck;
+import urlpasing_utill.STR_DATA;
+import urlpasing_utill.URLExtract;
 
 
 public class BackgroundService extends Service {

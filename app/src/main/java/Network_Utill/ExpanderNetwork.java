@@ -1,14 +1,12 @@
-package Network_Utill;
+package network_utill;
 
 
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.Proxy;
 import java.net.URL;
 
@@ -42,4 +40,3 @@ public class ExpanderNetwork extends AsyncTask<String, Void, String> {
         return expand_URL;
     }
 }
-

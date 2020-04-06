@@ -1,4 +1,4 @@
-package Service_Utill;
+package service_utill;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,9 +6,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
-import URLPasing_Utill.STR_DATA;
+import urlpasing_utill.STR_DATA;
 
 public class SMSReceiverService extends BroadcastReceiver {
 

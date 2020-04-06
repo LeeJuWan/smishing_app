@@ -1,4 +1,4 @@
-package DB_Utill;
+package db_utill;
 
 public class Com_Table {
     private final String[] com = {"http://www.benikea.com", "http://www.asiaculturecity.com", "https://www.gsshop.com",

@@ -1,4 +1,4 @@
-package URLPasing_Utill;
+package urlpasing_utill;
 
 
 public class STR_DATA {

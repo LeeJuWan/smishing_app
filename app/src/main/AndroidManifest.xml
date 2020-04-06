@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="andbook.example.smishing">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,7 +33,7 @@
             android:exported="false"/>
 
         <receiver
-            android:name="Service_Utill.SMSReceiverService"
+            android:name="service_utill.SMSReceiverService"
             android:enabled="true">
             <intent-filter android:priority="999999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
@@ -41,7 +42,7 @@
         <!-- 브로드 캐스트 리시버는 exported = false 미적용, 적용 시, 외부 문자 입력을 파싱할 수없음-->
 
         <service
-            android:name="Service_Utill.BackgroundService"
+            android:name="service_utill.BackgroundService"
             android:enabled="true"
             android:exported="false">
         </service> <!-- 백그라운드 -->

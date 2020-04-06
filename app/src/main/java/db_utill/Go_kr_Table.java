@@ -1,4 +1,4 @@
-package DB_Utill;
+package db_utill;
 
 public class Go_kr_Table {
     private final String[] go= {"http://www.president.go.kr","http://edu.humanrights.go.kr", "http://www.bai.go.kr", "http://www.humanrights.go.kr",
